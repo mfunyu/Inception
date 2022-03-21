@@ -1,3 +1,8 @@
+
+version: '3'
 services:
-  database:
-    image:
+  nginx:
+    image: nginx
+    container_name: nginx_mfunyu
+    tty: true
+
