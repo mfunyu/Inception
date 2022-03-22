@@ -5,13 +5,11 @@ RUN apk update && apk add nginx
 COPY nginx.conf /etc/nginx
 
 # ---------------------------------- openssl --------------------------------- #
-RUN mkdir /etc/nginx/ssl \
+RUN apk add openssl \
+	&& mkdir /etc/nginx/ssl \
 	&& cd /etc/nginx/ssl \
-	&& openssl req -newkey rsa:4096 \
-            -x509 \
-            -sha256 \
-            -days 3650 \
+	&& openssl req -x509 \
             -nodes \
-            -out mfunyu.crt \
-            -keyout mfunyu.key \
-            -subj "/CN=JP"
+            -subj "/CN=JP" \
+            -out nginx.crt \
+            -keyout nginx.key
