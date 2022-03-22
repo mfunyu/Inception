@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk update && apk add nginx
 
-COPY default.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx
 
 # ---------------------------------- openssl --------------------------------- #
 RUN mkdir /etc/nginx/ssl \
