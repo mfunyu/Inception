@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.14
 
 RUN apk update && apk add nginx
 
@@ -13,3 +13,5 @@ RUN apk add openssl \
             -subj "/CN=JP" \
             -out nginx.crt \
             -keyout nginx.key
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
