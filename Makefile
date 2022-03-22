@@ -4,7 +4,7 @@ DIR		:= $(SRCDIR)/requirements
 COMPOSE	:= $(SRCDIR)/docker-compose.yml
 
 all:
-	docker-compose -f $(COMPOSE) up
+	docker-compose -f $(COMPOSE) up --build
 
 fclean:
 	docker container prune -f
