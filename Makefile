@@ -8,4 +8,4 @@ all:
 
 fclean:
 	docker container prune -f
-	docker image rm nginx
+	docker image rm nginx wordpress
