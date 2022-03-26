@@ -8,5 +8,8 @@ services:
     ports:
       - 443:443
       - 80:80
-    tty: true
+    networks:
+      default:
+        aliases:
+          - mfunyu.42.fr
 
