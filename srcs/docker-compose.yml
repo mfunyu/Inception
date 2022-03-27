@@ -7,9 +7,4 @@ services:
     container_name: nginx
     ports:
       - 443:443
-      - 80:80
-    networks:
-      default:
-        aliases:
-          - mfunyu.42.fr
 
