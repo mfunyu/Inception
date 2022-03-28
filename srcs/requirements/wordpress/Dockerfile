@@ -18,9 +18,11 @@ RUN apk add php7 php-fpm \
 	php7-json \
 	php7-phar
 
+COPY php-fpm.conf /etc/php7/php-fpm.d/www.conf
+
 # --------------------------------- wordpress -------------------------------- #
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
-# ENTRYPOINT ["/sbin/tini","-vvv", "--"]
+ENTRYPOINT ["/usr/sbin/php-fpm7"]
