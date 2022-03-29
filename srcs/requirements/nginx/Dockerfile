@@ -4,6 +4,8 @@ RUN apk update && apk add nginx
 
 COPY nginx.conf /etc/nginx/http.d/default.conf
 
+COPY tools/ /var/www/html/
+
 # ---------------------------------- openssl --------------------------------- #
 RUN apk add openssl \
 	&& mkdir /etc/nginx/ssl \
