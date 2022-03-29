@@ -20,6 +20,10 @@ RUN apk add php7 php-fpm \
 
 COPY php-fpm.conf /etc/php7/php-fpm.d/www.conf
 
+RUN sed -ie 's/;daemonize = yes/daemonize = no/g' /etc/php7/php-fpm.conf
+
+RUN adduser -S www-data
+
 # --------------------------------- wordpress -------------------------------- #
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \
