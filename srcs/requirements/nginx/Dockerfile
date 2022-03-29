@@ -4,9 +4,12 @@ RUN apk update && apk add nginx
 
 # ---------------------------- nginx configuration --------------------------- #
 COPY nginx.conf /etc/nginx/http.d/default.conf
-RUN sed -i -e 's/user nginx;/user  www-data;/g' /etc/nginx/nginx.conf
-RUN adduser -S www-data
 
+# setup www-data as user
+RUN adduser -S www-data
+RUN sed -i -e 's/user nginx;/user  www-data;/g' /etc/nginx/nginx.conf
+
+# add index files
 COPY tools/ /var/www/html/
 
 # ---------------------------------- openssl --------------------------------- #
