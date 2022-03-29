@@ -16,6 +16,10 @@ RUN sed -ie 's/;daemonize = yes/daemonize = no/g' /etc/php7/php-fpm.conf
 # setup user www-data
 RUN adduser -S www-data
 
+# add index files
+COPY tools/ /var/www/html/
+
+
 # --------------------------------- wordpress -------------------------------- #
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \
