@@ -25,4 +25,9 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
+RUN wget --inet4 https://wordpress.org/latest.tar.gz \
+	&& tar -zxvf latest.tar.gz \
+	&& mv wordpress /var/www/html/wordpress/ \
+	&& chown -R www-data:www-data /var/www/html/wordpress
+
 ENTRYPOINT ["/usr/sbin/php-fpm7"]
