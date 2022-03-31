@@ -9,6 +9,8 @@ services:
       - 443:443
     depends_on:
       - wordpress
+    networks:
+      - server
 
   wordpress:
     build: requirements/wordpress
@@ -16,8 +18,17 @@ services:
     container_name: wordpress
     depends_on:
       - mariadb
+    networks:
+      - server
+      - database
 
   mariadb:
     build: requirements/mariadb
     image: mariadb
     container_name: mariadb
+    networks:
+      - database
+
+networks:
+  server:
+  database:
