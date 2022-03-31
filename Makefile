@@ -4,7 +4,9 @@ DIR		:= $(SRCDIR)/requirements
 COMPOSE	:= $(SRCDIR)/docker-compose.yml
 
 all:
+ifneq ($(shell uname), Darwin)
 	@- $(DIR)/tools/setup.sh
+endif
 	docker-compose -f $(COMPOSE) up --build
 
 clean:
