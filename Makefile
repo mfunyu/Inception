@@ -10,8 +10,16 @@ endif
 	docker-compose -f $(COMPOSE) up --build
 
 clean:
+	docker-compose -f $(COMPOSE) down
 	$(DIR)/tools/clean.sh
 
-fclean:
+fclean: clean
 	docker container prune -f
 	docker image rm nginx wordpress
+
+re: clean
+ifneq ($(shell uname), Darwin)
+	@- $(DIR)/tools/setup.sh
+endif
+	docker-compose -f $(COMPOSE) build --no-cache
+	docker-compose -f $(COMPOSE) up
