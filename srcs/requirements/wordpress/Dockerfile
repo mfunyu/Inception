@@ -63,19 +63,13 @@ RUN adduser -S www-data
 # add index files
 COPY tools/ /var/www/html/
 
-
 # --------------------------------- wordpress -------------------------------- #
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
+WORKDIR /var/www/html
 
+COPY setup.sh .
 
-
-
-
-
-
-
-
-ENTRYPOINT ["/usr/sbin/php-fpm7"]
+ENTRYPOINT ["./setup.sh"]
