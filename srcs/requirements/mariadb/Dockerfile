@@ -5,10 +5,14 @@ RUN apk add mariadb mariadb-client openrc
 RUN openrc \
 	&& touch /run/openrc/softlevel \
 	&& /etc/init.d/mariadb setup
-	# && service mariadb start \
-	# && mysql -u root -p mysql
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+
+RUn sed -ie "s/#bind-address=0.0.0.0/bind-address=0.0.0.0/g" /etc/my.cnf.d/mariadb-server.cnf \
+	&& sed -ie "s/skip-networking/# skip-networking/g" /etc/my.cnf.d/mariadb-server.cnf
+
+COPY setup.sh .
+
+ENTRYPOINT ["./setup.sh"]
 
 # /usr/bin/mysql_install_db --user=mysql
 # mkdir /run/mysqld
