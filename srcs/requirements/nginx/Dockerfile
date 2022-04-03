@@ -9,9 +9,6 @@ COPY nginx.conf /etc/nginx/http.d/default.conf
 RUN adduser -S www-data
 RUN sed -i -e 's/user nginx;/user  www-data;/g' /etc/nginx/nginx.conf
 
-# add index files
-COPY tools/ /var/www/html/
-
 # ---------------------------------- openssl --------------------------------- #
 RUN apk add openssl \
 	&& mkdir /etc/nginx/ssl \
