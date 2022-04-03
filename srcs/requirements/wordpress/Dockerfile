@@ -4,14 +4,15 @@ RUN apk update && apk add wget
 
 # ------------------------------------ php ----------------------------------- #
 RUN apk add php7 \
-		php7-fpm			\
+		php7-fpm \
 		php7-json \
 		php7-mbstring \
 		php7-mysqli \
 		php7-phar \
 		php7-tokenizer \
 		php7-openssl \
-		php-curl
+		php-curl \
+		mariadb-client
 
 # php-fpm configuration
 COPY php-fpm.conf /etc/php7/php-fpm.d/www.conf
@@ -21,9 +22,6 @@ RUN sed -ie 's/;daemonize = yes/daemonize = no/g' /etc/php7/php-fpm.conf
 
 # setup user www-data
 RUN adduser -S www-data
-
-# add index files
-COPY tools/ /var/www/html/
 
 # --------------------------------- wordpress -------------------------------- #
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
