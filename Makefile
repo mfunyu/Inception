@@ -23,3 +23,12 @@ ifneq ($(shell uname), Darwin)
 endif
 	docker-compose -f $(COMPOSE) build --no-cache
 	docker-compose -f $(COMPOSE) up
+
+nginx:
+	docker exec -it nginx /bin/sh
+
+wp:
+	docker exec -it wordpress /bin/sh
+
+db:
+	docker exec -it mariadb /bin/sh
