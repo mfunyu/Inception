@@ -19,4 +19,6 @@ RUN apk add openssl \
             -out nginx.crt \
             -keyout nginx.key
 
+WORKDIR /var/www/html
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
