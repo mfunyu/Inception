@@ -34,4 +34,6 @@ services:
 
 networks:
   server:
+    driver: bridge
   database:
+    driver: bridge
