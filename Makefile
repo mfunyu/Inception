@@ -15,7 +15,8 @@ clean:
 
 fclean: clean
 	docker container prune -f
-	docker image rm nginx wordpress
+	docker image rm nginx wordpress mariadb
+	docker volume rm srcs_db-volume srcs_server-volume
 
 re: clean
 ifneq ($(shell uname), Darwin)
