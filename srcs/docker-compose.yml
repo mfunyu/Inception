@@ -48,12 +48,12 @@ volumes:
   server-volume:
     driver_opts:
       type: none
-      device: /home/mfunyu/data/server
+      device: "${VOLUME}/server"
       o: bind
   db-volume:
     driver_opts:
       type: none
-      device: /home/mfunyu/data/db
+      device: "${VOLUME}/db"
       o: bind
 
 networks:

@@ -1,8 +1,10 @@
 #!/bin/bash
 
-if ! grep "127.0.0.1	mfunyu.42.fr" /etc/hosts > /dev/null; then
-echo "127.0.0.1	mfunyu.42.fr" | sudo tee -a /etc/hosts
+source ./srcs/.env
+
+if ! grep "127.0.0.1	${DOMAIN}" /etc/hosts > /dev/null; then
+echo "127.0.0.1	${DOMAIN}" | sudo tee -a /etc/hosts
 fi
 
-sudo mkdir -p /home/mfunyu/data/server
-sudo mkdir -p /home/mfunyu/data/db
+sudo mkdir -p ${VOLUME}/server
+sudo mkdir -p ${VOLUME}/db
