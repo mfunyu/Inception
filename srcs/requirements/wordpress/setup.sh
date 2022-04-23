@@ -8,18 +8,18 @@ done
 wp core is-installed 2> /dev/null
 if [ $? -ne 0 ] ; then
 	wp core download --allow-root
-	wp core config --dbname=wordpress \
-				   --dbuser=wordpress  \
-				   --dbpass=password \
+	wp core config --dbname=${DB_NAME} \
+				   --dbuser=${DB_USER} \
+				   --dbpass=${DB_PASSWD} \
 				   --dbhost=mariadb:3306
-	wp core install --url=mfunyu.42.fr \
-					--title=mfunyu \
-					--admin_user=mfunyu \
-					--admin_password=password \
-					--admin_email=mfunyu@example.com
-	wp user create user \
-					user@example.com \
-					--user_pass=password
+	wp core install --url=${DOMAIN} \
+					--title=${TITLE} \
+					--admin_user=${WP_ADMIN} \
+					--admin_email=${WP_ADMIN_EMAIL} \
+					--admin_password=${WP_ADMIN_PASSWD}
+	wp user create ${WP_USER} \
+					${WP_USER_EMAIL} \
+					--user_pass=${WP_USER_PASSWD}
 fi
 
 /usr/sbin/php-fpm7

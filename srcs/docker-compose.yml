@@ -13,6 +13,8 @@ services:
       - server
     volumes:
       - server-volume:/var/www/html
+    env_file:
+      - .env
     restart: always
 
   wordpress:
@@ -26,6 +28,8 @@ services:
       - database
     volumes:
       - server-volume:/var/www/html
+    env_file:
+      - .env
     restart: always
 
   mariadb:
@@ -36,6 +40,8 @@ services:
       - database
     volumes:
       - db-volume:/var/lib/mysql
+    env_file:
+      - .env
     restart: always
 
 volumes:

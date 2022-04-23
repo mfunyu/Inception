@@ -9,9 +9,9 @@ service mariadb restart 2> /dev/null
 fi
 
 mysql -u root <<EOF
-create user 'wordpress'@'%' identified by 'password';
-create database wordpress;
-grant all on wordpress.* to 'wordpress'@'%';
+create user '${DB_USER}'@'%' identified by '${DB_PASSWD}';
+create database ${DB_NAME};
+grant all on ${DB_NAME}.* to '${DB_USER}'@'%';
 EOF
 
 
