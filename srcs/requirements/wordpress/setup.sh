@@ -1,6 +1,9 @@
 #!/bin/sh
 
-# mysql -h mariadb -P 3306 -u wordpress -ppassword
+# wait for mariadb to start
+while ! mysql -h mariadb -P 3306 -u wordpress -ppassword 2> /dev/null; do
+sleep 1
+done
 
 if [ ! -e "wp-config.php" ] ; then
 	wp core download --allow-root
