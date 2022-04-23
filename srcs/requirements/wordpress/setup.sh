@@ -16,6 +16,9 @@ if [ ! -e "wp-config.php" ] ; then
 					--admin_user=mfunyu \
 					--admin_password=password \
 					--admin_email=mfunyu@example.com
+	wp user create user \
+					user@example.com \
+					--user_pass=password
 fi
 
 /usr/sbin/php-fpm7
