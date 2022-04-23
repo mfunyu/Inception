@@ -15,7 +15,7 @@ RUN apk add php7 \
 		mariadb-client
 
 # php-fpm configuration
-COPY php-fpm.conf /etc/php7/php-fpm.d/www.conf
+COPY www.conf /etc/php7/php-fpm.d/www.conf
 
 # deamonize php-fpm
 RUN sed -ie 's/;daemonize = yes/daemonize = no/g' /etc/php7/php-fpm.conf
