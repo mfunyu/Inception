@@ -13,7 +13,3 @@ RUn sed -ie "s/#bind-address=0.0.0.0/bind-address=0.0.0.0/g" /etc/my.cnf.d/maria
 COPY setup.sh .
 
 ENTRYPOINT ["./setup.sh"]
-
-# /usr/bin/mysql_install_db --user=mysql
-# mkdir /run/mysqld
-# touch /run/mysqld/mysqld.sock

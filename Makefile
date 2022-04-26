@@ -25,6 +25,8 @@ endif
 	docker-compose -f $(COMPOSE) build --no-cache
 	docker-compose -f $(COMPOSE) up
 
+
+# -------------------------------- docker exec ------------------------------- #
 nginx:
 	docker exec -it nginx /bin/sh
 
