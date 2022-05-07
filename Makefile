@@ -7,10 +7,10 @@ all:
 ifneq ($(shell uname), Darwin)
 	@- $(DIR)/tools/setup.sh
 endif
-	docker-compose -f $(COMPOSE) up --build
+	cd $(SRCDIR) && docker-compose up --build
 
 clean:
-	docker-compose -f $(COMPOSE) down
+	cd $(SRCDIR) && docker-compose down
 	$(DIR)/tools/clean.sh
 
 fclean: clean
@@ -24,8 +24,9 @@ re: clean
 ifneq ($(shell uname), Darwin)
 	@- $(DIR)/tools/setup.sh
 endif
-	docker-compose -f $(COMPOSE) build --no-cache
-	docker-compose -f $(COMPOSE) up
+	cd $(SRCDIR) && \
+	docker-compose build --no-cache && \
+	docker-compose up
 
 
 # -------------------------------- docker exec ------------------------------- #
