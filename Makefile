@@ -14,9 +14,11 @@ clean:
 	$(DIR)/tools/clean.sh
 
 fclean: clean
-	docker container prune -f
-	docker image rm nginx wordpress mariadb
-	docker volume rm srcs_db-volume srcs_server-volume
+	-docker stop $(docker ps -qa) 2>/dev/null
+	-docker rm $(docker ps -qa) 2>/dev/null
+	-docker rmi -f $(docker images -qa) 2>/dev/null
+	-docker volume rm $(docker volume ls -q) 2>/dev/null
+	-docker network rm $(docker network ls -q) 2>/dev/null
 
 re: clean
 ifneq ($(shell uname), Darwin)
