@@ -14,11 +14,11 @@ clean:
 	$(DIR)/tools/clean.sh
 
 fclean: clean
-	-docker stop $(docker ps -qa) 2>/dev/null
-	-docker rm $(docker ps -qa) 2>/dev/null
-	-docker rmi -f $(docker images -qa) 2>/dev/null
-	-docker volume rm $(docker volume ls -q) 2>/dev/null
-	-docker network rm $(docker network ls -q) 2>/dev/null
+	-docker stop $(shell docker ps -qa) 2>/dev/null
+	-docker rm $(shell docker ps -qa) 2>/dev/null
+	-docker rmi -f $(shell docker images -qa) 2>/dev/null
+	-docker volume rm $(shell docker volume ls -q) 2>/dev/null
+	-docker network rm $(shell docker network ls -q) 2>/dev/null
 
 re: clean
 ifneq ($(shell uname), Darwin)
