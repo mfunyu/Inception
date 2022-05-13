@@ -12,6 +12,9 @@ mysql -u root <<EOF
 create user '${MYSQL_USER}'@'%' identified by '${MYSQL_PASSWORD}';
 create database ${MYSQL_DATABASE};
 grant all on ${MYSQL_DATABASE}.* to '${MYSQL_USER}'@'%';
+delete from mysql.user where user='';
+delete from mysql.user where user='root';
+flush privileges;
 EOF
 
 
