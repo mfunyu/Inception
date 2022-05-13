@@ -20,7 +20,7 @@ fclean: clean
 	-docker volume rm $(shell docker volume ls -q) 2>/dev/null
 	-docker network rm $(shell docker network ls -q) 2>/dev/null
 
-re: clean
+re: fclean
 ifneq ($(shell uname), Darwin)
 	@- $(DIR)/tools/setup.sh
 endif
