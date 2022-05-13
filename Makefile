@@ -31,10 +31,10 @@ endif
 
 # -------------------------------- docker exec ------------------------------- #
 nginx:
-	docker exec -it nginx /bin/sh
+	cd $(SRCDIR) && docker-compose exec nginx /bin/sh
 
 wp:
-	docker exec -it wordpress /bin/sh
+	cd $(SRCDIR) && docker-compose exec wordpress /bin/sh
 
 db:
-	docker exec -it mariadb /bin/sh
+	cd $(SRCDIR) && docker-compose exec mariadb /bin/sh
