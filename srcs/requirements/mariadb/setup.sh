@@ -8,6 +8,7 @@ if [ $? -ne 0 ] ; then
 service mariadb restart 2> /dev/null
 fi
 
+if [ ! -d /var/lib/mysql/mysql ] ; then
 mysql -u root <<EOF
 create user '${MYSQL_USER}'@'%' identified by '${MYSQL_PASSWORD}';
 create database ${MYSQL_DATABASE};
@@ -16,6 +17,6 @@ delete from mysql.user where user='';
 delete from mysql.user where user='root';
 flush privileges;
 EOF
-
+fi
 
 tail -f  /dev/null
