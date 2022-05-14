@@ -1,20 +1,26 @@
 #!/bin/sh
 
-service mariadb start 2> /dev/null
+if [ ! -d "/run/mysqld" ]; then
 
-# when crashed
-service mariadb status
-if [ $? -ne 0 ] ; then
-service mariadb restart 2> /dev/null
+	mkdir -p /run/mysqld
+	chown -R mysql:mysql /run/mysqld
+
 fi
 
-mysql -u root <<EOF
-create user '${MYSQL_USER}'@'%' identified by '${MYSQL_PASSWORD}';
-create database ${MYSQL_DATABASE};
-grant all on ${MYSQL_DATABASE}.* to '${MYSQL_USER}'@'%';
-delete from mysql.user where user='';
-delete from mysql.user where user='root';
-flush privileges;
+if [ ! -d "/var/lib/mysql/${MYSQL_DATABASE}" ]; then
+
+	mysql_install_db --user=mysql --skip-test-db --basedir=/usr --datadir=/var/lib/mysql
+
+	mysqld -u mysql --bootstrap <<EOF
+		flush privileges;
+		create user '${MYSQL_USER}'@'%' identified by '${MYSQL_PASSWORD}';
+		create database ${MYSQL_DATABASE};
+		grant all on ${MYSQL_DATABASE}.* to '${MYSQL_USER}'@'%';
+		delete from mysql.user where user='';
+		delete from mysql.user where user='root';
+		flush privileges;
 EOF
 
-mysqld_safe
+fi
+
+mysqld -u mysql
