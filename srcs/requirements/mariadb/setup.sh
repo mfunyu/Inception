@@ -17,5 +17,4 @@ delete from mysql.user where user='root';
 flush privileges;
 EOF
 
-
-tail -f  /dev/null
+mysqld_safe
