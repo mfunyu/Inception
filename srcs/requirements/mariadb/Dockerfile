@@ -2,13 +2,7 @@ FROM alpine:3.14
 
 RUN apk update \
 	&& apk add mariadb \
-				mariadb-client \
-				openrc
-
-# ---------------------------------- openrc ---------------------------------- #
-RUN openrc \
-	&& touch /run/openrc/softlevel \
-	&& /etc/init.d/mariadb setup
+				mariadb-client
 
 # ---------------------------------- mariadb --------------------------------- #
 RUN sed -ie "s/#bind-address=0.0.0.0/bind-address=0.0.0.0/g" /etc/my.cnf.d/mariadb-server.cnf \
