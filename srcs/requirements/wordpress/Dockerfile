@@ -1,6 +1,7 @@
 FROM alpine:3.14
 
-RUN apk update && apk add wget
+RUN apk update \
+	&& apk add wget
 
 # ------------------------------------ php ----------------------------------- #
 RUN apk add php7 \

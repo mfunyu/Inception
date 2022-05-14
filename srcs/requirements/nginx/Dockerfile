@@ -1,6 +1,7 @@
 FROM alpine:3.14
 
-RUN apk update && apk add nginx
+RUN apk update \
+	&& apk add nginx
 
 # ---------------------------- nginx configuration --------------------------- #
 COPY nginx.conf /etc/nginx/http.d/default.conf
@@ -14,10 +15,10 @@ RUN apk add openssl \
 	&& mkdir /etc/nginx/ssl \
 	&& cd /etc/nginx/ssl \
 	&& openssl req -x509 \
-            -nodes \
-            -subj "/CN=JP" \
-            -out nginx.crt \
-            -keyout nginx.key
+			-nodes \
+			-subj "/CN=JP" \
+			-out nginx.crt \
+			-keyout nginx.key
 
 WORKDIR /var/www/html
 
